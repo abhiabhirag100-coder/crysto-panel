@@ -2,314 +2,343 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CRYSTO PANEL</title>
 
 <style>
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 20px;
-    background: #080b14;
-    color: white;
-    font-family: Arial, sans-serif;
-}
-
-header {
-    padding: 22px;
-    border: 1px solid #176cff;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #101b38, #07101f);
-    box-shadow: 0 0 20px #176cff33;
-}
-
-.logo {
-    color: #4da3ff;
-    font-size: 27px;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-
-header p {
-    color: #aab8d2;
-}
-
-.badge {
-    display: inline-block;
-    color: #61ffb0;
-    background: #103326;
-    padding: 7px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-}
-
-h2 {
-    margin-top: 28px;
-    font-size: 19px;
+  margin: 0;
+  padding: 20px;
+  background: #080b14;
+  color: white;
+  font-family: Arial, sans-serif;
 }
 
 .card {
-    background: #111827;
-    border: 1px solid #26354d;
-    border-radius: 14px;
-    padding: 18px;
-    margin: 14px 0;
+  background: #111827;
+  border: 1px solid #29364d;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 16px 0;
 }
 
-.card p {
-    color: #aab8d2;
-    font-size: 14px;
-    line-height: 1.5;
+.hero {
+  border: 1px solid #176cff;
+  background: linear-gradient(135deg,#101b38,#07101f);
+  box-shadow: 0 0 20px #176cff22;
+  padding: 25px;
+  border-radius: 18px;
 }
 
-button {
-    width: 100%;
-    padding: 13px;
-    background: #176cff;
-    color: white;
-    border: none;
-    border-radius: 9px;
-    font-size: 15px;
-    font-weight: bold;
-    margin-top: 10px;
+h1, h2 {
+  margin-top: 0;
 }
 
-button:active {
-    opacity: 0.8;
+.logo {
+  color: #4da3ff;
+  letter-spacing: 2px;
+}
+
+.muted {
+  color: #aab8d2;
+  line-height: 1.6;
 }
 
 input, select {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    border: 1px solid #35445e;
-    border-radius: 8px;
-    background: #080b14;
-    color: white;
+  display: block;
+  width: 100%;
+  margin: 10px 0 18px;
+  padding: 14px;
+  color: white;
+  background: #080b14;
+  border: 1px solid #394760;
+  border-radius: 10px;
+  font-size: 16px;
 }
 
-label {
-    display: block;
-    margin-top: 15px;
-    color: #c7d4eb;
-    font-size: 14px;
+button {
+  width: 100%;
+  padding: 14px;
+  color: white;
+  background: #176cff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+button:active {
+  opacity: .8;
+}
+
+.secondary {
+  background: #25344d;
+}
+
+.result {
+  padding: 15px;
+  margin-top: 15px;
+  background: #080b14;
+  border-radius: 10px;
+  border: 1px solid #176cff;
+  line-height: 1.9;
+}
+
+.badge {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 20px;
+  color: #65ffb0;
+  background: #103326;
+}
+
+.hidden {
+  display: none;
 }
 
 footer {
-    text-align: center;
-    color: #77849b;
-    font-size: 12px;
-    margin-top: 30px;
+  text-align: center;
+  color: #8794aa;
+  padding: 20px 0;
+  font-size: 12px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">⚡ CRYSTO PANEL</div>
-    <p>Your gaming settings dashboard</p>
+<!-- DEMO LOGIN -->
+<section id="loginSection" class="card">
+  <h1 class="logo">⚡ CRYSTO PANEL</h1>
+  <p class="muted">Welcome to your gaming dashboard.</p>
+
+  <label for="playerName">Choose a display name</label>
+  <input id="playerName"
+         maxlength="24"
+         placeholder="Enter your gamer name">
+
+  <button onclick="login()">Enter Panel</button>
+
+  <p class="muted">
+    Demo access only. Never enter your game password
+    or account cookies here.
+  </p>
+</section>
+
+<!-- MAIN DASHBOARD -->
+<main id="dashboard" class="hidden">
+
+  <header class="hero">
+    <h1 class="logo">⚡ CRYSTO PANEL</h1>
+    <p class="muted">Your gaming settings dashboard</p>
     <span class="badge">● SYSTEM ONLINE</span>
-</header>
+    <p id="welcome"></p>
+  </header>
 
-<h2>🎮 Dashboard</h2>
+  <h2>🎮 Free Fire MAX</h2>
 
-<div class="card">
-    <h3>Free Fire MAX</h3>
-    <p>Manage your personal gaming profiles and device settings.</p>
-    <button onclick="showMessage('Welcome to CRYSTO PANEL!')">
-        Open Dashboard
-    </button>
-</div>
+  <section class="card">
+    <h2>📱 Device Settings</h2>
 
-<h2>⚙️ Device Settings</h2>
-
-<div class="card">
     <label for="device">Your device</label>
-    <input id="device" placeholder="Enter your phone model">
+    <input id="device" placeholder="e.g. Realme 9 5G Speed Edition">
 
     <label for="dpi">Current DPI</label>
-    <input id="dpi" type="number" placeholder="Enter your current DPI">
+    <input id="dpi" type="number"
+           min="100" max="1000" value="360">
+
+    <label for="buttonSize">Fire button size (%)</label>
+    <input id="buttonSize" type="number"
+           min="1" max="100" value="50">
 
     <label for="style">Playing style</label>
     <select id="style">
-        <option>All-rounder</option>
-        <option>Headshot practice</option>
-        <option>Shotgun</option>
-        <option>Sniper</option>
-        <option>Movement</option>
+      <option value="balanced">All-rounder</option>
+      <option value="headshot">Headshot practice</option>
+      <option value="shotgun">Shotgun / M1887</option>
+      <option value="movement">Movement and accuracy</option>
     </select>
 
-    <button onclick="saveSettings()">Save Profile</button>
-    <p id="status">Your settings stay on this device.</p>
-</div>
+    <button onclick="saveSettings()">Save on This Device</button>
+    <p id="saveMessage" class="muted"></p>
+  </section>
 
-<h2>🎯 CRYSTO Sensitivity Generator</h2>
-
-<div class="card">
-  <p>Generate a starting sensitivity profile for your device.</p>
-
-  <label for="phone">Phone Model</label>
-  <input id="phone" placeholder="e.g. Realme 9 5G">
-
-  <label for="ram">RAM (GB)</label>
-  <input id="ram" type="number" min="2" max="24"
-         placeholder="e.g. 6">
-
-  <label for="dpi">DPI</label>
-  <input id="dpi" type="number" min="100" max="3000"
-         placeholder="e.g. 380">
-
-  <label for="fire">Fire Button Size (%)</label>
-  <input id="fire" type="number" min="1" max="100"
-         placeholder="e.g. 55">
-
-  <label for="playstyle">Playing Style</label>
-  <select id="playstyle">
-    <option value="all">All-rounder</option>
-    <option value="head">Headshot Practice</option>
-    <option value="shotgun">Shotgun / M1887</option>
-    <option value="sniper">Sniper</option>
-  </select>
-
-  <button onclick="generateSensi()">
-    ⚡ GENERATE SENSITIVITY
-  </button>
-
-  <div id="result" aria-live="polite"></div>
-</div>
-
-<h2>🔐 Privacy</h2>
-
-<div class="card">
-    <h3>Local Profile Storage</h3>
-    <p>
-        This demo stores your device profile locally.
-        It does not collect passwords, game login cookies,
-        or account session tokens.
+  <section class="card">
+    <h2>🎯 Sensitivity Generator</h2>
+    <p class="muted">
+      Creates a starting profile you can test and adjust.
+      No setting can guarantee zero recoil or every headshot.
     </p>
-    <button onclick="clearSettings()">Clear Saved Profile</button>
-</div>
+
+    <button onclick="generate()">Generate Sensitivity</button>
+
+    <div id="result" class="result hidden"></div>
+    <button class="secondary" onclick="copyResult()">
+      Copy Sensitivity
+    </button>
+    <p id="copyMessage" class="muted"></p>
+  </section>
+
+  <section class="card">
+    <h2>🛠️ Quick Tips</h2>
+    <p class="muted">
+      • Test settings in the training ground.<br>
+      • Change one setting at a time.<br>
+      • If aim goes above the head, reduce General slightly.<br>
+      • If aim stays on the body, try a small increase.<br>
+      • Keep your DPI unchanged unless you choose otherwise.
+    </p>
+  </section>
+
+  <button class="secondary" onclick="logout()">Exit Panel</button>
+</main>
 
 <footer>
-    CRYSTO PANEL © 2026<br>
-    Gaming Dashboard • Version 1.0
+  CRYSTO PANEL · Community gaming tool<br>
+  Not affiliated with Garena.
 </footer>
 
 <script>
-function showMessage(message) {
-    alert(message);
-}
+let currentProfile = null;
 
-function saveSettings() {
-    const profile = {
-        device: document.getElementById("device").value,
-        dpi: document.getElementById("dpi").value,
-        style: document.getElementById("style").value
-    };
+function login() {
+  const name = document.getElementById("playerName")
+    .value.trim();
 
-    localStorage.setItem("crystoProfile", JSON.stringify(profile));
-
-    document.getElementById("status").textContent =
-        "Profile saved successfully!";
-}
-
-function loadSettings() {
-    const saved = localStorage.getItem("crystoProfile");
-
-    if (!saved) return;
-
-    const profile = JSON.parse(saved);
-
-    document.getElementById("device").value = profile.device || "";
-    document.getElementById("dpi").value = profile.dpi || "";
-    document.getElementById("style").value =
-        profile.style || "All-rounder";
-}
-
-function clearSettings() {
-    localStorage.removeItem("crystoProfile");
-    document.getElementById("device").value = "";
-    document.getElementById("dpi").value = "";
-    document.getElementById("style").value = "All-rounder";
-    document.getElementById("status").textContent =
-        "Saved profile cleared.";
-}
-
-loadSettings();
-function generateSensi() {
-  const phone = document.getElementById("phone").value.trim();
-  const ram = Number(document.getElementById("ram").value);
-  const dpi = Number(document.getElementById("dpi").value);
-  const fire = Number(document.getElementById("fire").value);
-  const style = document.getElementById("playstyle").value;
-  const result = document.getElementById("result");
-
-  if (!phone || !ram || !dpi || !fire ||
-      ram < 2 || ram > 24 ||
-      dpi < 100 || dpi > 3000 ||
-      fire < 1 || fire > 100) {
-    result.innerHTML =
-      "<p>Please enter valid phone details.</p>";
+  if (!name) {
+    alert("Please enter a display name!");
     return;
   }
 
-  const profiles = {
-    all:     [185, 175, 165, 150, 100, 140],
-    head:    [195, 190, 175, 155, 100, 145],
-    shotgun: [195, 185, 170, 145,  90, 135],
-    sniper:  [165, 145, 155, 175, 120, 130]
-  };
+  document.getElementById("loginSection").classList.add("hidden");
+  document.getElementById("dashboard").classList.remove("hidden");
+  document.getElementById("welcome").textContent =
+    "Welcome, " + name + "! ⚡";
 
-  const names = [
-    "General",
-    "Red Dot",
-    "2x Scope",
-    "4x Scope",
-    "Sniper Scope",
-    "Free Look"
-  ];
-
-  const values = profiles[style].map((value, i) => {
-    const adjustment = Math.round((dpi - 400) / 100);
-    const scopeFactor = i < 2 ? 1 : 0.4;
-    return Math.max(
-      0,
-      Math.min(200, value + Math.round(adjustment * scopeFactor))
-    );
-  });
-
-  let output = "<h3>⚡ Your CRYSTO Profile</h3>";
-  output += "<p>Device: " + escapeHTML(phone) + "</p>";
-  output += "<p>RAM: " + ram + " GB</p>";
-  output += "<p>DPI: " + dpi + "</p>";
-  output += "<p>Fire button: " + fire + "%</p>";
-  output += "<hr>";
-
-  names.forEach((name, i) => {
-    output += "<p><strong>" + name + ":</strong> " +
-              values[i] + "/200</p>";
-  });
-
-  output += "<p>These are starting suggestions, not guaranteed "
-          + "no-recoil settings. Adjust them in training mode.</p>";
-
-  result.innerHTML = output;
+  loadSettings();
 }
 
-function escapeHTML(text) {
-  return text.replace(/[&<>"']/g, function(char) {
-    return {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    }[char];
-  });
+function logout() {
+  document.getElementById("dashboard").classList.add("hidden");
+  document.getElementById("loginSection").classList.remove("hidden");
+}
+
+function saveSettings() {
+  const settings = {
+    device: document.getElementById("device").value,
+    dpi: document.getElementById("dpi").value,
+    buttonSize: document.getElementById("buttonSize").value,
+    style: document.getElementById("style").value
+  };
+
+  try {
+    localStorage.setItem("crystoSettings", JSON.stringify(settings));
+    document.getElementById("saveMessage").textContent =
+      "Settings saved on this browser. ✓";
+  } catch (error) {
+    document.getElementById("saveMessage").textContent =
+      "Browser storage unavailable. Settings were not saved.";
+  }
+}
+
+function loadSettings() {
+  try {
+    const settings = JSON.parse(
+      localStorage.getItem("crystoSettings") || "null"
+    );
+
+    if (!settings) return;
+
+    document.getElementById("device").value = settings.device || "";
+    document.getElementById("dpi").value = settings.dpi || 360;
+    document.getElementById("buttonSize").value =
+      settings.buttonSize || 50;
+    document.getElementById("style").value =
+      settings.style || "balanced";
+  } catch (error) {
+    console.log("No saved settings available.");
+  }
+}
+
+function generate() {
+  const style = document.getElementById("style").value;
+
+  const profiles = {
+    balanced: {
+      General: 175,
+      RedDot: 165,
+      Scope2x: 150,
+      Scope4x: 130,
+      Sniper: 90,
+      FreeLook: 140
+    },
+    headshot: {
+      General: 185,
+      RedDot: 175,
+      Scope2x: 155,
+      Scope4x: 135,
+      Sniper: 85,
+      FreeLook: 145
+    },
+    shotgun: {
+      General: 190,
+      RedDot: 170,
+      Scope2x: 145,
+      Scope4x: 120,
+      Sniper: 80,
+      FreeLook: 140
+    },
+    movement: {
+      General: 180,
+      RedDot: 165,
+      Scope2x: 150,
+      Scope4x: 125,
+      Sniper: 85,
+      FreeLook: 160
+    }
+  };
+
+  currentProfile = profiles[style];
+
+  let output = "<strong>YOUR STARTING PROFILE</strong><br>";
+
+  for (const [name, value] of Object.entries(currentProfile)) {
+    output += name + ": " + value + "<br>";
+  }
+
+  output += "<br><small>These are experimental starting values, " +
+    "not guaranteed results. Adjust them in-game.</small>";
+
+  document.getElementById("result").innerHTML = output;
+  document.getElementById("result").classList.remove("hidden");
+  document.getElementById("copyMessage").textContent = "";
+}
+
+async function copyResult() {
+  if (!currentProfile) {
+    document.getElementById("copyMessage").textContent =
+      "Generate a profile first.";
+    return;
+  }
+
+  const text = Object.entries(currentProfile)
+    .map(([name, value]) => name + ": " + value)
+    .join("\n");
+
+  try {
+    await navigator.clipboard.writeText(text);
+    document.getElementById("copyMessage").textContent =
+      "Sensitivity copied! ✓";
+  } catch (error) {
+    document.getElementById("copyMessage").textContent =
+      "Clipboard unavailable. Copy the values manually.";
+  }
 }
 </script>
 
