@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRYSTO PANEL</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background: #080b14;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    padding: 22px;
+    border: 1px solid #176cff;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #101b38, #07101f);
+    box-shadow: 0 0 20px #176cff33;
+}
+
+.logo {
+    color: #4da3ff;
+    font-size: 27px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+header p {
+    color: #aab8d2;
+}
+
+.badge {
+    display: inline-block;
+    color: #61ffb0;
+    background: #103326;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+h2 {
+    margin-top: 28px;
+    font-size: 19px;
+}
+
+.card {
+    background: #111827;
+    border: 1px solid #26354d;
+    border-radius: 14px;
+    padding: 18px;
+    margin: 14px 0;
+}
+
+.card p {
+    color: #aab8d2;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    background: #176cff;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+button:active {
+    opacity: 0.8;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid #35445e;
+    border-radius: 8px;
+    background: #080b14;
+    color: white;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    color: #c7d4eb;
+    font-size: 14px;
+}
+
+footer {
+    text-align: center;
+    color: #77849b;
+    font-size: 12px;
+    margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">⚡ CRYSTO PANEL</div>
+    <p>Your gaming settings dashboard</p>
+    <span class="badge">● SYSTEM ONLINE</span>
+</header>
+
+<h2>🎮 Dashboard</h2>
+
+<div class="card">
+    <h3>Free Fire MAX</h3>
+    <p>Manage your personal gaming profiles and device settings.</p>
+    <button onclick="showMessage('Welcome to CRYSTO PANEL!')">
+        Open Dashboard
+    </button>
+</div>
+
+<h2>⚙️ Device Settings</h2>
+
+<div class="card">
+    <label for="device">Your device</label>
+    <input id="device" placeholder="Enter your phone model">
+
+    <label for="dpi">Current DPI</label>
+    <input id="dpi" type="number" placeholder="Enter your current DPI">
+
+    <label for="style">Playing style</label>
+    <select id="style">
+        <option>All-rounder</option>
+        <option>Headshot practice</option>
+        <option>Shotgun</option>
+        <option>Sniper</option>
+        <option>Movement</option>
+    </select>
+
+    <button onclick="saveSettings()">Save Profile</button>
+    <p id="status">Your settings stay on this device.</p>
+</div>
+
+<h2>🎯 Sensitivity Profile</h2>
+
+<div class="card">
+    <p>Choose a profile for your next practice session.</p>
+    <button onclick="showMessage('All-rounder profile selected!')">
+        All-rounder
+    </button>
+    <button onclick="showMessage('Headshot practice selected!')">
+        Headshot Practice
+    </button>
+    <button onclick="showMessage('Shotgun practice selected!')">
+        Shotgun Practice
+    </button>
+</div>
+
+<h2>🔐 Privacy</h2>
+
+<div class="card">
+    <h3>Local Profile Storage</h3>
+    <p>
+        This demo stores your device profile locally.
+        It does not collect passwords, game login cookies,
+        or account session tokens.
+    </p>
+    <button onclick="clearSettings()">Clear Saved Profile</button>
+</div>
+
+<footer>
+    CRYSTO PANEL © 2026<br>
+    Gaming Dashboard • Version 1.0
+</footer>
+
+<script>
+function showMessage(message) {
+    alert(message);
+}
+
+function saveSettings() {
+    const profile = {
+        device: document.getElementById("device").value,
+        dpi: document.getElementById("dpi").value,
+        style: document.getElementById("style").value
+    };
+
+    localStorage.setItem("crystoProfile", JSON.stringify(profile));
+
+    document.getElementById("status").textContent =
+        "Profile saved successfully!";
+}
+
+function loadSettings() {
+    const saved = localStorage.getItem("crystoProfile");
+
+    if (!saved) return;
+
+    const profile = JSON.parse(saved);
+
+    document.getElementById("device").value = profile.device || "";
+    document.getElementById("dpi").value = profile.dpi || "";
+    document.getElementById("style").value =
+        profile.style || "All-rounder";
+}
+
+function clearSettings() {
+    localStorage.removeItem("crystoProfile");
+    document.getElementById("device").value = "";
+    document.getElementById("dpi").value = "";
+    document.getElementById("style").value = "All-rounder";
+    document.getElementById("status").textContent =
+        "Saved profile cleared.";
+}
+
+loadSettings();
+</script>
+
+</body>
+</html>
