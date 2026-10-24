@@ -147,19 +147,39 @@ footer {
     <p id="status">Your settings stay on this device.</p>
 </div>
 
-<h2>🎯 Sensitivity Profile</h2>
+<h2>🎯 CRYSTO Sensitivity Generator</h2>
 
 <div class="card">
-    <p>Choose a profile for your next practice session.</p>
-    <button onclick="showMessage('All-rounder profile selected!')">
-        All-rounder
-    </button>
-    <button onclick="showMessage('Headshot practice selected!')">
-        Headshot Practice
-    </button>
-    <button onclick="showMessage('Shotgun practice selected!')">
-        Shotgun Practice
-    </button>
+  <p>Generate a starting sensitivity profile for your device.</p>
+
+  <label for="phone">Phone Model</label>
+  <input id="phone" placeholder="e.g. Realme 9 5G">
+
+  <label for="ram">RAM (GB)</label>
+  <input id="ram" type="number" min="2" max="24"
+         placeholder="e.g. 6">
+
+  <label for="dpi">DPI</label>
+  <input id="dpi" type="number" min="100" max="3000"
+         placeholder="e.g. 380">
+
+  <label for="fire">Fire Button Size (%)</label>
+  <input id="fire" type="number" min="1" max="100"
+         placeholder="e.g. 55">
+
+  <label for="playstyle">Playing Style</label>
+  <select id="playstyle">
+    <option value="all">All-rounder</option>
+    <option value="head">Headshot Practice</option>
+    <option value="shotgun">Shotgun / M1887</option>
+    <option value="sniper">Sniper</option>
+  </select>
+
+  <button onclick="generateSensi()">
+    ⚡ GENERATE SENSITIVITY
+  </button>
+
+  <div id="result" aria-live="polite"></div>
 </div>
 
 <h2>🔐 Privacy</h2>
@@ -220,6 +240,77 @@ function clearSettings() {
 }
 
 loadSettings();
+function generateSensi() {
+  const phone = document.getElementById("phone").value.trim();
+  const ram = Number(document.getElementById("ram").value);
+  const dpi = Number(document.getElementById("dpi").value);
+  const fire = Number(document.getElementById("fire").value);
+  const style = document.getElementById("playstyle").value;
+  const result = document.getElementById("result");
+
+  if (!phone || !ram || !dpi || !fire ||
+      ram < 2 || ram > 24 ||
+      dpi < 100 || dpi > 3000 ||
+      fire < 1 || fire > 100) {
+    result.innerHTML =
+      "<p>Please enter valid phone details.</p>";
+    return;
+  }
+
+  const profiles = {
+    all:     [185, 175, 165, 150, 100, 140],
+    head:    [195, 190, 175, 155, 100, 145],
+    shotgun: [195, 185, 170, 145,  90, 135],
+    sniper:  [165, 145, 155, 175, 120, 130]
+  };
+
+  const names = [
+    "General",
+    "Red Dot",
+    "2x Scope",
+    "4x Scope",
+    "Sniper Scope",
+    "Free Look"
+  ];
+
+  const values = profiles[style].map((value, i) => {
+    const adjustment = Math.round((dpi - 400) / 100);
+    const scopeFactor = i < 2 ? 1 : 0.4;
+    return Math.max(
+      0,
+      Math.min(200, value + Math.round(adjustment * scopeFactor))
+    );
+  });
+
+  let output = "<h3>⚡ Your CRYSTO Profile</h3>";
+  output += "<p>Device: " + escapeHTML(phone) + "</p>";
+  output += "<p>RAM: " + ram + " GB</p>";
+  output += "<p>DPI: " + dpi + "</p>";
+  output += "<p>Fire button: " + fire + "%</p>";
+  output += "<hr>";
+
+  names.forEach((name, i) => {
+    output += "<p><strong>" + name + ":</strong> " +
+              values[i] + "/200</p>";
+  });
+
+  output += "<p>These are starting suggestions, not guaranteed "
+          + "no-recoil settings. Adjust them in training mode.</p>";
+
+  result.innerHTML = output;
+}
+
+function escapeHTML(text) {
+  return text.replace(/[&<>"']/g, function(char) {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char];
+  });
+}
 </script>
 
 </body>
