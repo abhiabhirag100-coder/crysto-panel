@@ -1,0 +1,11 @@
+{
+"name": "CRYSTO PANEL",
+"short_name": "CRYSTO",
+"description": "CRYSTO PANEL gaming dashboard and sensitivity suggestions.",
+"start_url": "/crysto-panel/",
+"scope": "/crysto-panel/",
+"display": "standalone",
+"orientation": "portrait",
+"theme_color": "#07111f",
+"background_color": "#070a12"
+}
